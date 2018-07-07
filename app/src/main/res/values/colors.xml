@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#424242</color>
+    <color name="colorPrimaryDark">#1b1b1b</color>
+    <color name="ColorPrimaryLight">#6d6d6d</color>
+    <color name="ColorSecondary">#546e7a</color>
+    <color name="ColorSecondaryDark">#29434e</color>
+    <color name="ColorSecondaryLight">#819ca9</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--BOOK2 COLOR-->
+    <color name="brown">#efebe9</color>
+    <color name="brown_2">#d7ccc8</color>
+</resources>
