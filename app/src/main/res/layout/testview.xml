@@ -7,16 +7,6 @@
 
 
 
-    <android.widget.SearchView
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:id="@+id/mainsearch2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/searchbackground"
-        android:layout_marginBottom="10dp"
-        />
 
 
     <android.support.v7.widget.CardView

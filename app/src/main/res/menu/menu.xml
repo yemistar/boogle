@@ -15,6 +15,11 @@
         app:showAsAction="ifRoom"
 
         android:icon="@android:drawable/ic_dialog_info"/>
+    <item
+        android:title="Home"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:id="@+id/home"
+        app:showAsAction="ifRoom" />
 
 
 </menu>
