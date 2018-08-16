@@ -25,7 +25,7 @@
 
 
         <activity android:name=".BookDetail"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".SearchActivity">
 
 
         </activity>
