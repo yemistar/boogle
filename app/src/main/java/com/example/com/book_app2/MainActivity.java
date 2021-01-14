@@ -3,26 +3,11 @@ package com.example.com.book_app2;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.Loader;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.app.LoaderManager;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -35,7 +20,7 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testview);
+        setContentView(R.layout.main_activity_layout);
 
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);

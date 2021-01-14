@@ -71,7 +71,6 @@ public class QuareBookapi {
                 if(volumeInfo.has("description")){
 
                     bookdes =  volumeInfo.get("description").toString();
-                    Log.d(TAG, "josonobj: Des: "+bookdes);
                 }
                 else{
                     bookdes = "No descripetion";

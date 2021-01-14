@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.SearchRecentSuggestions;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -23,7 +22,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +56,7 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.search_activity_layout);
         loaderManager = getLoaderManager();
 
         //inti listview
@@ -136,7 +134,6 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
         uribulder.appendQueryParameter("q",uri);
         uribulder.appendQueryParameter("maxResults",syncConnPref);
         uribulder.appendQueryParameter("key",key);
-        Log.d(TAG, "handleuri: "+uribulder.toString());
         see=uribulder.toString();
         getReset(reste);
 
@@ -154,7 +151,6 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
     @Override
     public Loader<List<Book>> onCreateLoader(int id, @Nullable Bundle args) {
 
-        Log.d(TAG, "onCreateLoader: see:"+see);
         loadingIndicator.setVisibility(View.VISIBLE);
 
         return new BookLoader(this,see);
