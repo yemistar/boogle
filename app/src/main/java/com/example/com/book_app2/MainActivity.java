@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity  {
                         .fitCenter()
                         .centerCrop()
                         .into(imageView);
+                isImageGood=true;
 
             } catch ( Exception e){
                 isImageGood=false;
