@@ -32,20 +32,53 @@ public class MainActivity extends AppCompatActivity  {
 
         searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 
-        getImage();
+        displayImage();
 
     }
 
 
-    private void getImage(){
-        //using glide to load the image
-        GlideApp.with(getApplicationContext())
-                .load("https://photostream.iastate.edu/public/002/2511/2511-large-10fc1e05585c768e.jpg")
-                .fitCenter()
-                .centerCrop()
-                .into(imageView);
+    /**
+     * Display a random image of ISU campus
+     * with Glide
+     */
+    private void displayImage(){
+        boolean isImageGood=true;
+        do{
+
+            String imageUrl =randomizeUrl();
+
+            try{
+                //using glide to load the image
+                GlideApp.with(getApplicationContext())
+                        .load(imageUrl)
+                        .fitCenter()
+                        .centerCrop()
+                        .into(imageView);
+
+            } catch ( Exception e){
+                isImageGood=false;
+            }
+        }while (!isImageGood);
+
     }
 
+    /**
+     * creates a random image url
+     *
+     * @return an image url
+     */
+    private String randomizeUrl(){
+        int max = 2511;
+        int min = 2000;
+        int range = max - min + 1;
+        int rand = (int)(Math.random() * range) + min;
+
+        String imageNumber=String.valueOf(rand);
+
+        String imageUrl ="https://photostream.iastate.edu/public/002/"+imageNumber+"/"+imageNumber+"-medium.jpg";
+
+        return imageUrl;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,7 +98,5 @@ public class MainActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
+    
 }
