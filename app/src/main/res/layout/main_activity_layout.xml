@@ -19,33 +19,59 @@
         />
 
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardtest"
+    <LinearLayout
+        android:id="@+id/cardtestlayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="2dp"
-        app:cardBackgroundColor="@color/colorPrimaryDark"
-        app:cardCornerRadius="10dp">
-        <LinearLayout
-            android:id="@+id/cardtestlayout"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--   Card View for the image and time     -->
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardtest"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <ImageView
+            android:layout_height="250dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:layout_marginTop="5dp"
-                />
-            <TextView
-                android:id="@+id/booknamerec"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="match_parent">
+
+                <!--   The Image view  -->
+                <ImageView
+                    android:id="@+id/homeImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
+                    />
+
+                <!--     The Time at the center of the image   -->
+                <TextView
+                    android:id="@+id/data_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="3dp"
+                    android:gravity="center"
+                    android:text="4:48 am"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="@android:color/white" />
 
 
-        </LinearLayout>
+            </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+
+
+
+        </android.support.v7.widget.CardView>
+
+
+
+    </LinearLayout>
+
+
 
 
 
