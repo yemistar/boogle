@@ -5,10 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 /**
  *
@@ -17,32 +21,70 @@ import android.widget.SearchView;
 public class MainActivity extends AppCompatActivity  {
 
     ImageView imageView;
-
+    Toolbar myToolbar;
+    TextView boogleTv;
+    ImageView settingsV;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
 
+        boogleTv= findViewById(R.id.tooltext);
+
+        settingsV= findViewById(R.id.settings);
 
         imageView = findViewById(R.id.homeImage);
+
+        myToolbar= (Toolbar) findViewById(R.id.toolbar_frame);
+        setSupportActionBar(myToolbar);
+
+
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        final SearchView searchView = (SearchView) findViewById(R.id.mainsearch2);
+        searchView = (SearchView) findViewById(R.id.search_bar);
+        searchView.setIconifiedByDefault(true);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
-        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+        searchViewOnclickFunctions();
+
+
 
         displayImage();
 
     }
 
+    /**
+     * This is to hide and display the @boogleTv and @settingsV
+     */
+    private void searchViewOnclickFunctions(){
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boogleTv.setVisibility(View.INVISIBLE);
+                settingsV.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                boogleTv.setVisibility(View.VISIBLE);
+                settingsV.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
+    }
 
     /**
      * Display a random image of ISU campus
      * with Glide
      */
     private void displayImage(){
-        boolean isImageGood=true;
+        boolean isImageGood;
         do{
 
             String imageUrl =randomizeUrl();
@@ -81,23 +123,7 @@ public class MainActivity extends AppCompatActivity  {
         return imageUrl;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.settings) {
-            Intent settingsIntent = new Intent(this, SettingsActivity.class);
-            startActivity(settingsIntent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     
 }
