@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,8 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,11 +55,19 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
     private  ListView listView;
     private boolean reste=false;
     private  View loadingIndicator;
+    Toolbar myToolbar;
+    TextView boogleTv;
+    ImageView settingsV;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity_layout);
+
+        setUpCustomAppBar();
+        searchViewOnclickFunctions();
+
         loaderManager = getLoaderManager();
 
         //inti listview
@@ -101,6 +112,65 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
         });
     }
 
+
+    /**
+     * for setting up the appbar view
+     */
+    private void setUpCustomAppBar(){
+        myToolbar= (Toolbar) findViewById(R.id.toolbar_frame);
+        setSupportActionBar(myToolbar);
+
+        boogleTv= findViewById(R.id.tooltext);
+
+        settingsV= findViewById(R.id.settings);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) findViewById(R.id.search_bar);
+        searchView.setIconifiedByDefault(true);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+    }
+
+    /**
+     * This is to hide and display the @boogleTv and @settingsV
+     * and to set navigation to home page and settings page
+     */
+    private void searchViewOnclickFunctions(){
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boogleTv.setVisibility(View.INVISIBLE);
+                settingsV.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                boogleTv.setVisibility(View.VISIBLE);
+                settingsV.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
+        boogleTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homeIntent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(homeIntent);
+            }
+        });
+
+        settingsV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
+            }
+        });
+    }
+
     @Override
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
@@ -110,8 +180,6 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-
-
             handleuri(query);
 
         }
@@ -126,7 +194,7 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
         Uri baseuri = Uri.parse(BASE);
         Uri.Builder uribulder = baseuri.buildUpon();
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-       String syncConnPref = sharedPref.getString("Max_Search_Result","");
+       String syncConnPref = sharedPref.getString("Max_Search_Result","10");
 
        //api key "PLEASE DON'T USE. USE YOUR OWN"
        String key ="AIzaSyAQ61-SYl2_MpLfj6ffr69t_nUcLeoFSEA";
@@ -139,11 +207,6 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
 
 
         loaderManager.initLoader(BOOK_LOADER_ID_2,null,this);
-
-
-
-
-
 
     }
 
@@ -196,22 +259,7 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-        // Inflate the options menu from XML
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-
-        // Get the SearchView and set the searchable configuration
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.searchmenu).getActionView();
-        // Assumes current activity is the searchable activity
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(true); // Do not iconify the widget; expand it by default
-
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

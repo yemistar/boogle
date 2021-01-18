@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
     <EditTextPreference
+        android:layout_marginTop="5dp"
         android:defaultValue="@string/Max_Search_Result_Defult"
         android:key="Max_Search_Result"
         android:title="@string/Search_Result_Length"

@@ -77,6 +77,21 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
+        boogleTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayImage();
+            }
+        });
+
+        settingsV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
+            }
+        });
+
     }
 
     /**
@@ -87,9 +102,8 @@ public class MainActivity extends AppCompatActivity  {
         boolean isImageGood;
         do{
 
-            String imageUrl =randomizeUrl();
-
             try{
+                String imageUrl =randomizeUrl();
                 //using glide to load the image
                 GlideApp.with(getApplicationContext())
                         .load(imageUrl)
