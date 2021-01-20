@@ -5,18 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
-    <android.widget.SearchView
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:id="@+id/mainsearch2"
-        android:layout_width="match_parent"
+    <!-- The custom appBar   -->
+    <include
+        android:id="@+id/toolbar_frame"
         android:layout_height="wrap_content"
-        android:background="@drawable/searchbackground"
-        android:layout_marginBottom="10dp"
-        />
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_margin="4dp" />
 
 
     <LinearLayout
