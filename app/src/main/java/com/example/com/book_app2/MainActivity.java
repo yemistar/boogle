@@ -14,15 +14,24 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  *
  */
 
 public class MainActivity extends AppCompatActivity  {
 
+    private static final String TAG = "MainActivity";
     ImageView imageView;
     Toolbar myToolbar;
     TextView boogleTv;
+    TextView greetingTv;
+    TextView yearTv;
+    TextView timeTv;
     ImageView settingsV;
     SearchView searchView;
 
@@ -32,6 +41,12 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.main_activity_layout);
 
         boogleTv= findViewById(R.id.tooltext);
+
+        greetingTv= findViewById(R.id.day);
+
+        yearTv= findViewById(R.id.year);
+
+        timeTv=findViewById(R.id.data_time);
 
         settingsV= findViewById(R.id.settings);
 
@@ -45,15 +60,26 @@ public class MainActivity extends AppCompatActivity  {
         searchView = (SearchView) findViewById(R.id.search_bar);
         searchView.setIconifiedByDefault(true);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
         searchViewOnclickFunctions();
-
-
-
         displayImage();
+        setDate();
 
     }
 
+
+    /**
+     *  Set the date and time
+     */
+    private  void  setDate(){
+        String time = new SimpleDateFormat("KK:mm aa", Locale.getDefault()).format(new Date());
+        String month = new SimpleDateFormat("MMM", Locale.getDefault()).format(new Date());
+        String year = new SimpleDateFormat("yyyy", Locale.getDefault()).format(new Date());
+        String day = new SimpleDateFormat("EEEE", Locale.getDefault()).format(new Date());
+
+        greetingTv.setText("Hello, It's "+day);
+        yearTv.setText(month+", "+year);
+        timeTv.setText(time);
+    }
     /**
      * This is to hide and display the @boogleTv and @settingsV
      */

@@ -42,6 +42,26 @@
                     android:layout_marginTop="0dp"
                     />
 
+                 <!--     The greeting and the day    -->
+                <TextView
+                    android:id="@+id/day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hello, it's Wednesday"
+                    android:layout_margin="5dp"
+                    android:textColor="@android:color/white"/>
+
+                <!--     The greeting and the day    -->
+                <TextView
+                    android:id="@+id/year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="jan, 2021"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:textColor="@android:color/white"/>
+
                 <!--     The Time at the center of the image   -->
                 <TextView
                     android:id="@+id/data_time"
