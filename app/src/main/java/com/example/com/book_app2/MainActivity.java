@@ -3,19 +3,22 @@ package com.example.com.book_app2;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity  {
     TextView timeTv;
     ImageView settingsV;
     SearchView searchView;
+    ArrayList<Book> bookArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity  {
         setSupportActionBar(myToolbar);
 
 
+        bookArrayList = new ArrayList<>();
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) findViewById(R.id.search_bar);
         searchView.setIconifiedByDefault(true);
@@ -63,9 +68,25 @@ public class MainActivity extends AppCompatActivity  {
         searchViewOnclickFunctions();
         displayImage();
         setDate();
+        getDB();
 
     }
 
+
+
+    private void getDB(){
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("bookList", null);
+        Type type = new TypeToken<ArrayList<Book>>() {}.getType();
+        bookArrayList = gson.fromJson(json, type);
+        if (bookArrayList == null) {
+            bookArrayList = new ArrayList<>();
+            Log.i(TAG, "getDB: ArraySize :"+bookArrayList.size());
+        }else {
+            Log.i(TAG, "getDB: ArraySize :"+bookArrayList.size());
+        }
+    }
 
     /**
      *  Set the date and time

@@ -9,14 +9,13 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,8 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
     TextView boogleTv;
     ImageView settingsV;
     SearchView searchView;
+    SharedPreferences.Editor editor;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +84,11 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
         loadingIndicator.setVisibility(View.GONE);
 
         //inti shared preference, for when the user make changes in the settings
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         preferences.registerOnSharedPreferenceChangeListener(this);// setting a listener for when changes happens
 
 
+        bookArrayList = new ArrayList<>();
         handleIntent(getIntent());
 
 
@@ -95,8 +99,13 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
                 Book book = bookAdapter2.getItem(position);
+
+                if(!bookArrayList.contains(book)){
+                    Log.i(TAG, "onItemClick: Adding book");
+                    bookArrayList.add(book);
+                    testDB();
+                }
 
                 Intent intent = new Intent(parent.getContext(),BookDetail.class);
                 intent.putExtra("BookName",book.getBookname());
@@ -113,6 +122,14 @@ public class SearchActivity extends AppCompatActivity  implements LoaderManager.
     }
 
 
+    private void testDB(){
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(bookArrayList);
+        editor.putString("bookList", json);
+        editor.apply();
+    }
     /**
      * for setting up the appbar view
      */
