@@ -4,6 +4,9 @@
     <string name="Des">Description</string>
 
     <!--Setting strings-->
+
+    <!--jump back in text-->
+    <string name="jump_back_in">Jump Back In</string>
     <string name="Max_Search_Result_Defult">40</string>
     <string name="Max_Search_Result">Length_Of_Search_Result</string>
     <string name="Search_Result_Length">Search Length</string>
