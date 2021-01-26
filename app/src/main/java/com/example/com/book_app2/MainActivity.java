@@ -4,17 +4,16 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,7 +28,7 @@ import java.util.Locale;
  *
  */
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     ImageView imageView;
@@ -48,19 +47,19 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
 
-        boogleTv= findViewById(R.id.tooltext);
+        boogleTv = findViewById(R.id.tooltext);
 
-        greetingTv= findViewById(R.id.day);
+        greetingTv = findViewById(R.id.day);
 
-        yearTv= findViewById(R.id.year);
+        yearTv = findViewById(R.id.year);
 
-        timeTv=findViewById(R.id.data_time);
+        timeTv = findViewById(R.id.data_time);
 
-        settingsV= findViewById(R.id.settings);
+        settingsV = findViewById(R.id.settings);
 
         imageView = findViewById(R.id.homeImage);
 
-        myToolbar= (Toolbar) findViewById(R.id.toolbar_frame);
+        myToolbar = (Toolbar) findViewById(R.id.toolbar_frame);
         setSupportActionBar(myToolbar);
 
 
@@ -80,9 +79,9 @@ public class MainActivity extends AppCompatActivity  {
     /**
      * RecyclerView to show book that the user clicked on
      */
-    private void setUpRview(){
+    private void setUpRview() {
         recyclerView = findViewById(R.id.rview);
-        HomeBookAdapter homeBookAdapter= new HomeBookAdapter(bookArrayList);
+        HomeBookAdapter homeBookAdapter = new HomeBookAdapter(bookArrayList);
         recyclerView.setAdapter(homeBookAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -90,37 +89,36 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    private void getDB(){
+    private void getDB() {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("bookList", null);
-        Type type = new TypeToken<ArrayList<Book>>() {}.getType();
+        Type type = new TypeToken<ArrayList<Book>>() {
+        }.getType();
         bookArrayList = gson.fromJson(json, type);
         if (bookArrayList == null) {
             bookArrayList = new ArrayList<>();
-            Log.i(TAG, "getDB: ArraySize :"+bookArrayList.size());
-        }else {
-            Log.i(TAG, "getDB: ArraySize :"+bookArrayList.size());
         }
     }
 
     /**
-     *  Set the date and time
+     * Set the date and time
      */
-    private  void  setDate(){
+    private void setDate() {
         String time = new SimpleDateFormat("KK:mm aa", Locale.getDefault()).format(new Date());
         String month = new SimpleDateFormat("MMM", Locale.getDefault()).format(new Date());
         String year = new SimpleDateFormat("yyyy", Locale.getDefault()).format(new Date());
         String day = new SimpleDateFormat("EEEE", Locale.getDefault()).format(new Date());
 
-        greetingTv.setText("Hello, It's "+day);
-        yearTv.setText(month+", "+year);
+        greetingTv.setText("Hello, It's " + day);
+        yearTv.setText(month + ", " + year);
         timeTv.setText(time);
     }
+
     /**
      * This is to hide and display the @boogleTv and @settingsV
      */
-    private void searchViewOnclickFunctions(){
+    private void searchViewOnclickFunctions() {
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
@@ -161,24 +159,24 @@ public class MainActivity extends AppCompatActivity  {
      * Display a random image of ISU campus
      * with Glide
      */
-    private void displayImage(){
+    private void displayImage() {
         boolean isImageGood;
-        do{
+        do {
 
-            try{
-                String imageUrl =randomizeUrl();
+            try {
+                String imageUrl = randomizeUrl();
                 //using glide to load the image
                 GlideApp.with(getApplicationContext())
                         .load(imageUrl)
                         .fitCenter()
                         .centerCrop()
                         .into(imageView);
-                isImageGood=true;
+                isImageGood = true;
 
-            } catch ( Exception e){
-                isImageGood=false;
+            } catch (Exception e) {
+                isImageGood = false;
             }
-        }while (!isImageGood);
+        } while (!isImageGood);
 
     }
 
@@ -187,20 +185,18 @@ public class MainActivity extends AppCompatActivity  {
      *
      * @return an image url
      */
-    private String randomizeUrl(){
+    private String randomizeUrl() {
         int max = 2511;
         int min = 2000;
         int range = max - min + 1;
-        int rand = (int)(Math.random() * range) + min;
+        int rand = (int) (Math.random() * range) + min;
 
-        String imageNumber=String.valueOf(rand);
+        String imageNumber = String.valueOf(rand);
 
-        String imageUrl ="https://photostream.iastate.edu/public/002/"+imageNumber+"/"+imageNumber+"-medium.jpg";
+        String imageUrl = "https://photostream.iastate.edu/public/002/" + imageNumber + "/" + imageNumber + "-medium.jpg";
 
         return imageUrl;
     }
 
 
-
-    
 }
