@@ -7,6 +7,9 @@ import android.content.SharedPreferences;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity  {
     ImageView settingsV;
     SearchView searchView;
     ArrayList<Book> bookArrayList;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +73,21 @@ public class MainActivity extends AppCompatActivity  {
         displayImage();
         setDate();
         getDB();
+        setUpRview();
 
     }
 
+    /**
+     * RecyclerView to show book that the user clicked on
+     */
+    private void setUpRview(){
+        recyclerView = findViewById(R.id.rview);
+        HomeBookAdapter homeBookAdapter= new HomeBookAdapter(bookArrayList);
+        recyclerView.setAdapter(homeBookAdapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+    }
 
 
     private void getDB(){

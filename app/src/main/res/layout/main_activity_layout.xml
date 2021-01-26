@@ -78,9 +78,54 @@
             </RelativeLayout>
 
 
-
-
         </androidx.cardview.widget.CardView>
+
+        <!--The current viewed books-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_marginTop="10dp"
+
+                android:orientation="vertical">
+
+                <!--Header for the view-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+
+                    android:background="@drawable/searchbackground">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        style="@style/JumpIn"
+
+                        android:text="@string/jump_back_in"
+                        app:fontFamily="@font/biorhyme_light" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+
+            </LinearLayout>
+
+
+
+
 
 
 
