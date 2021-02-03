@@ -26,8 +26,9 @@
                 android:id="@+id/bookimage"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
+                android:scaleType="center"
                 android:background="@color/colorPrimaryDark"
+                android:layout_margin="1dp"
                 />
 
             <!--Book info layout-->
@@ -37,12 +38,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp">
                 <!--Book name-->
                 <LinearLayout
                     android:id="@+id/booknameLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="2dp">
 
                     <TextView
                         android:id="@+id/bookname"
@@ -63,7 +67,7 @@
                     android:id="@+id/bookauthorLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginBottom="5dp">
 
                     <TextView
                         android:id="@+id/bookauthor"
