@@ -12,4 +12,5 @@
     <color name="brown">#efebe9</color>
     <color name="brown_2">#d7ccc8</color>
     <color name="dark_gold">#ccac00</color>
+    <color name="cardview_dark_background">#FF424242</color>
 </resources>
