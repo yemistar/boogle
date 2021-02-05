@@ -65,13 +65,27 @@ public class BookDetail extends AppCompatActivity {
 
         //inti toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.arrow_back);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         //inti collapsingtoolbar
         CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.cardview_dark_background));
 
         //setting book name to show in the collapsingtoolbar
         collapsingToolbarLayout.setTitle(book_name);
+
 
         //Todo use gulide to load the star to use less merory.
 
