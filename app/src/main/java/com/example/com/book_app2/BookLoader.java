@@ -41,7 +41,7 @@ public class BookLoader extends AsyncTaskLoader<List<Book>> {
         if(url==null){
             return null;
         }
-        Log.d(TAG, "loadInBackground: url"+url);
+        Log.d(TAG, "loadInBackground: url :"+url);
         // Perform the network request, parse the response, and extract a list of earthquakes.
         List<Book> bookList = QuareBookapi.josonobj(url);
 

@@ -144,7 +144,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
      * for setting up the appbar view
      */
     private void setUpCustomAppBar() {
-        myToolbar = (Toolbar) findViewById(R.id.toolbar_frame);
+        myToolbar = (Toolbar) findViewById(R.id.Toolbar);
         setSupportActionBar(myToolbar);
 
         boogleTv = findViewById(R.id.tooltext);
