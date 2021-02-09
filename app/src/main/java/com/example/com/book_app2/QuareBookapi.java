@@ -44,6 +44,7 @@ public class QuareBookapi {
 
         ArrayList<Book> bookList = new ArrayList<>();
         try {
+            Log.i(TAG, "josonobj: "+jasonresponds);
             JSONObject jsonObject = new JSONObject( jasonresponds);
             //getting the items array
             JSONArray items = jsonObject.getJSONArray("items");
@@ -159,6 +160,7 @@ public class QuareBookapi {
             if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
+                Log.i(TAG, "makeHttpRequest: 200: "+jsonResponse);
             } else {
                 Log.e(TAG, "Error response code: " + urlConnection.getResponseCode());
             }
