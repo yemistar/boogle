@@ -9,11 +9,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -23,7 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -48,12 +45,12 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     ImageView settingsV;
     SearchView searchView;
     SharedPreferences preferences;
-    private BookAdapter2 bookAdapter2;
+    private BookAdapter bookAdapter;
     private ArrayList<Book> bookArrayList;
     private LoaderManager loaderManager;
     private String see = "https://www.googleapis.com/books/v1/volumes?q=hee";
     private ListView listView;
-    private boolean reste = false;
+    private boolean reset = false;
     private View loadingIndicator;
 
     @Override
@@ -68,8 +65,8 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
 
         //inti listview
         listView = (ListView) findViewById(R.id.listview);
-        bookAdapter2 = new BookAdapter2(getApplicationContext(), new ArrayList<Book>());
-        listView.setAdapter(bookAdapter2);
+        bookAdapter = new BookAdapter(getApplicationContext(), new ArrayList<Book>());
+        listView.setAdapter(bookAdapter);
 
         // inti loading indicator
         loadingIndicator = findViewById(R.id.loading_indicator);
@@ -92,10 +89,9 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Book book = bookAdapter2.getItem(position);
+                Book book = bookAdapter.getItem(position);
 
                 if (!bookArrayList.contains(book)) {
-                    Log.i(TAG, "onItemClick: Adding book");
                     bookArrayList.add(book);
                     addClickedBook();
                 }
@@ -231,8 +227,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
         uribulder.appendQueryParameter("maxResults", syncConnPref);
         uribulder.appendQueryParameter("key", key);
         see = uribulder.toString();
-        getReset(reste);
-
+        getReset(reset);
 
         loaderManager.initLoader(BOOK_LOADER_ID_2, null, this);
 
@@ -241,19 +236,15 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     @NonNull
     @Override
     public Loader<List<Book>> onCreateLoader(int id, @Nullable Bundle args) {
-
         loadingIndicator.setVisibility(View.VISIBLE);
-
         return new BookLoader(this, see);
     }
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<Book>> loader, List<Book> data) {
-
         //adding all the books to the adapter
-        bookAdapter2.addAll(data);
-        reste = true;
-
+        bookAdapter.addAll(data);
+        reset = true;
         //setting the loading indecator to gone because it is done getting the data
         loadingIndicator.setVisibility(View.GONE);
 
@@ -261,10 +252,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
 
     @Override
     public void onLoaderReset(@NonNull Loader<List<Book>> loader) {
-
-        bookAdapter2.clear();
-
-
+        bookAdapter.clear();
     }
 
     /**
@@ -275,8 +263,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     private void getReset(boolean what) {
         if (what) {
             loaderManager.destroyLoader(BOOK_LOADER_ID_2);
-            bookAdapter2.clear();
-
+            bookAdapter.clear();
         }
     }
 

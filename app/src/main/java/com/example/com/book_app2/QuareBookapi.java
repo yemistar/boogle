@@ -44,7 +44,6 @@ public class QuareBookapi {
 
         ArrayList<Book> bookList = new ArrayList<>();
         try {
-            Log.i(TAG, "josonobj: "+jasonresponds);
             JSONObject jsonObject = new JSONObject( jasonresponds);
             //getting the items array
             JSONArray items = jsonObject.getJSONArray("items");
@@ -98,7 +97,6 @@ public class QuareBookapi {
 
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.d(TAG, "instance initializer: Error inti the jason obj");
         }
 
 
@@ -160,12 +158,9 @@ public class QuareBookapi {
             if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
-                Log.i(TAG, "makeHttpRequest: 200: "+jsonResponse);
             } else {
-                Log.e(TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(TAG, "Problem retrieving the earthquake JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
