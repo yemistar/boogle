@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="@android:color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,8 +16,8 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
             android:id="@+id/Toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
             android:background="@drawable/searchbackground"
@@ -72,31 +72,28 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-<androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:scrollbars="none"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    >
 
-    <ListView
-        android:layout_marginTop="5dp"
-        android:id="@+id/listview"
+    <!-- The Scroll view for the listView   -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:background="@android:color/white"
-        android:scrollbars="vertical"
-        android:nestedScrollingEnabled="true"
-        >
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </ListView>
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/white"
+            android:nestedScrollingEnabled="true"
+            android:scrollbars="vertical">
 
-</androidx.core.widget.NestedScrollView>
+        </ListView>
 
-
-
+    </androidx.core.widget.NestedScrollView>
 
 
     <!--Progress bar-->
@@ -105,12 +102,7 @@
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        />
-
-
-
-
+        android:layout_gravity="center_horizontal|center_vertical" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
