@@ -198,6 +198,7 @@
                 app:cardElevation="5dp">
 
                 <RelativeLayout
+                    android:id="@+id/buyButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

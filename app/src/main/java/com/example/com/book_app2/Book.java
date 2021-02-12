@@ -10,6 +10,9 @@ public class Book {
     private String Bookdiscription;
     private String BookpictureUrl;
     private String BookpictureUrlHD;
+    private String buyLink;
+
+
 
 
     /**
@@ -20,14 +23,17 @@ public class Book {
      * @param BooKdiscreption summary about the book
      * @param BookpictureUrl url for small image
      * @param BookpictureUrlHD url for lage image
+     * @param buyLInk the url link to buy the book at the play store
      */
-    public Book(String Bookname,String Bookauthor,String Bookrating,String BooKdiscreption,String BookpictureUrl, String BookpictureUrlHD){
+    public Book(String Bookname,String Bookauthor,String Bookrating,String BooKdiscreption,
+                String BookpictureUrl, String BookpictureUrlHD,String buyLInk){
         this.Bookname=Bookname;
         this.BooKauthor= Bookauthor;
         this.Bookrating=Bookrating;
         this.Bookdiscription=BooKdiscreption;
         this.BookpictureUrl= BookpictureUrl;
         this.BookpictureUrlHD=BookpictureUrlHD;
+        this.buyLink=buyLInk;
     }
 
     /**
@@ -76,5 +82,13 @@ public class Book {
      */
     public String getBookpictureUrlHD() {
         return BookpictureUrlHD;
+    }
+
+    /**
+     *
+     * @return  buyLink url
+     */
+    public String getBuyLink() {
+        return buyLink;
     }
 }
