@@ -1,6 +1,7 @@
 package com.example.com.book_app2;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -10,7 +11,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  *  A class for more info about a book
@@ -26,6 +29,9 @@ public class BookDetail extends AppCompatActivity {
      * The Star rating of the book
      */
    private Double rate;
+
+   private RelativeLayout relativeLayout;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +46,27 @@ public class BookDetail extends AppCompatActivity {
         String imageurl = intent.getStringExtra("ImageURL");
         String des =intent.getStringExtra("BooKDes");
         String bookrating = intent.getStringExtra("BookRating");
+
+         final String buyLInk = intent.getStringExtra("BuyLink");
+
+         relativeLayout = findViewById(R.id.buyButton);
+
+
+        /**
+         * the button that direct the user to where to buy the book
+         */
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(buyLInk.compareTo("NONE")==0){
+                    Toast.makeText(getApplicationContext()," Sorry no buy link available",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Uri uri = Uri.parse(buyLInk);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
 
         // Checking if the book has a rating
         // if it does it goes into the method "getStar"
@@ -100,6 +127,9 @@ public class BookDetail extends AppCompatActivity {
         //passing args into getstar method to show the stars
         getStar(rate);
     }
+
+
+
 
 
 

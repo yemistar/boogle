@@ -56,6 +56,7 @@ public class HomeBookAdapter extends RecyclerView.Adapter<HomeBookAdapter.ViewHo
                 intent.putExtra("BooKDes",book.getBookdiscription());
                 intent.putExtra("ImageURL",book.getBookpictureUrlHD());
                 intent.putExtra("BookRating",book.getBookrating());
+                intent.putExtra("BuyLink",book.getBuyLink());
 
                 context.startActivity(intent);
             }

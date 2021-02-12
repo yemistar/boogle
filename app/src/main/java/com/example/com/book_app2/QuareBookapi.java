@@ -53,6 +53,13 @@ public class QuareBookapi {
 
 
                 JSONObject volumeInfo = items.getJSONObject(i).getJSONObject("volumeInfo");
+                JSONObject saleInfo = items.getJSONObject(i).getJSONObject("saleInfo");
+
+                String buyLink="NONE";
+                if( saleInfo.has("buyLink")){
+                     buyLink = saleInfo.getString("buyLink");
+                }
+
 
                 String bookname = volumeInfo.getString("title");
 
@@ -90,7 +97,7 @@ public class QuareBookapi {
                 String imageuri2 = image.getString("thumbnail");
 
                 //adding the info about the book to the book obj
-                bookList.add(new Book(bookname,bookauthor,rating,bookdes,imageurl,imageuri2));
+                bookList.add(new Book(bookname,bookauthor,rating,bookdes,imageurl,imageuri2,buyLink));
             }
 
 

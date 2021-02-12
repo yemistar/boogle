@@ -102,6 +102,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
                 intent.putExtra("BooKDes", book.getBookdiscription());
                 intent.putExtra("ImageURL", book.getBookpictureUrlHD());
                 intent.putExtra("BookRating", book.getBookrating());
+                intent.putExtra("BuyLink",book.getBuyLink());
 
                 startActivity(intent);
 
