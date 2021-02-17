@@ -3,7 +3,7 @@
 
 ## Screenshot
 
-![Alt text](https://github.com/yemistar/boogle/blob/screenshot/hompage.png "Home Page")  ![ScreenShot](https://github.com/yemistar/boogle/blob/screenshot/searchResult.png "SearchPage") 
-![ScreenShot](https://github.com/yemistar/boogle/blob/screenshot/bookD.png "Book Details ")
+![Alt text](https://github.com/yemistar/boogle/blob/appRedesign/hompage.png "Home Page")  ![Alt text](https://github.com/yemistar/boogle/blob/appRedesign/searchResult.png "SearchPage") 
+![ScreenShot](https://github.com/yemistar/boogle/blob/appRedesign/bookD.png "Book Details ")
 
 
