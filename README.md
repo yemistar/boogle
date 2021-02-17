@@ -1,14 +1,9 @@
 # boogle
   An app that lets you search books on a given topic
 
-## Home Page
+## Screenshot
 
-![ScreenShot](https://github.com/yemistar/boogle/blob/screenshot/hompage.png)
-
-
-## Search Page
-![ScreenShot](https://github.com/yemistar/boogle/blob/screenshot/searchResult.png)
+![Alt text](https://github.com/yemistar/boogle/blob/screenshot/hompage.png "Home Page")  ![ScreenShot](https://github.com/yemistar/boogle/blob/screenshot/searchResult.png "SearchPage") 
+![ScreenShot](https://github.com/yemistar/boogle/blob/screenshot/bookD.png "Book Details ")
 
 
-## Book Detail page
-![ScreenShot](https://github.com/yemistar/boogle/blob/screenshot/bookD.png)
